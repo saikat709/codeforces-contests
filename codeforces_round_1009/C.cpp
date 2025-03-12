@@ -1,29 +1,33 @@
 #include <bits/stdc++.h>
+#define int long long 
+const int MOD = 1e9 + 7;
 using namespace std;
-typedef long long ll;
-
+ 
+ 
 void solve() {
-    int x; cin >> x;
-    ll ans = -1;
-
-    for( int y = x-1; y > x/2; y-- ){
-        if ( x-y < (x^y) && (x^y) < x+y  ){
-            ans = y;
-            break;
+    int x;
+    cin >> x;
+    if((x&(x-1))==0 || ((x+1)&(x)) == 0){
+        cout << -1 << endl;
+        return;
+    }
+    int las = 0;
+    for(int i = 1; i < 64; i++){
+        if((x >> i)){
+            las = i;
         }
     }
-
-    cout << ans << '\n';
+    cout << (1 << las) - 1 << endl;
+        
+        
 }
-
-int main() {
+ 
+signed main() {
     ios::sync_with_stdio(false);
-    cin.tie(0), cout.tie(0);
-
-    // freopen( "_in.txt",  "r", stdin  );
-    // freopen( "_out.txt", "w", stdout );
-
-    int tt; cin >> tt;
-    while (tt--) solve();
-    return 0;
+    cin.tie(0);
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
 }
